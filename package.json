@@ -1,0 +1,56 @@
+{
+  "name": "claith",
+  "version": "1.0.0",
+  "description": "A set of React components for Bootstrap 4",
+  "main": "dist/lib/index.js",
+  "types": "dist/lib/index.d.ts",
+  "scripts": {
+    "test": "ava dist/test/**/*.js",
+    "prepublish": "grunt"
+  },
+  "author": "Stewart Mackenzie-Leigh",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.64",
+    "@types/node": "^7.0.21",
+    "@types/react": "^15.0.24",
+    "@types/react-dom": "^15.5.0",
+    "@types/react-router": "^4.0.9",
+    "ava": "^0.17.0",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-ts": "^6.0.0-beta.15",
+    "load-grunt-tasks": "^3.5.2",
+    "typescript": "^2.3.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-router": "^4.1.1",
+    "react-router-dom": "^4.1.1",
+    "zxcvbn": "^4.4.2"
+  },
+  "peerDependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
+    "font-awesome": "^4.7.0"
+  },
+  "keywords": [
+    "react",
+    "bootstrap",
+    "css",
+    "components",
+    "ui"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stewartml/claith.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stewartml/claith/issues"
+  },
+  "homepage": "https://github.com/stewartml/claith#readme"
+}
