@@ -4,7 +4,13 @@ import { ZxcvbnMeter } from './password-meter';
 
 export interface ExtendedChangeEvent extends React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> {
   optionValue?: any;
-}
+};
+
+export interface FormGroupModel {
+  value: any;
+  valid: boolean;
+  errors: string[];
+};
 
 export interface FormGroupProps extends CommonProps<any>, React.HTMLProps<any> {
   help?: string;
@@ -18,10 +24,11 @@ export interface FormGroupProps extends CommonProps<any>, React.HTMLProps<any> {
   optionValue?: any;
   inline?: boolean;
   onChange: React.EventHandler<ExtendedChangeEvent>;
+  model?: FormGroupModel;
 };
 
 export const FormGroup = (props: FormGroupProps) => {
-  const {
+  let {
     help,
     label,
     optional,
@@ -35,10 +42,16 @@ export const FormGroup = (props: FormGroupProps) => {
     id,
     optionValue=true,
     inline,
+    model,
+    value,
     ...inputProps
   } = props;
 
   let children: React.ReactNode;
+
+  if (model) {
+    ({errors, valid, value} = model);
+  }
 
   if (props.children) {
     children = (
@@ -53,7 +66,7 @@ export const FormGroup = (props: FormGroupProps) => {
     );
 
   } else if (props.type === 'radio' || props.type === 'checkbox') {
-    const {value, onChange, ...checkProps} = inputProps;
+    const {onChange, ...checkProps} = inputProps;
     
     if (type === 'radio') {
       checkProps['value'] = optionValue;
@@ -80,12 +93,14 @@ export const FormGroup = (props: FormGroupProps) => {
         }
 
         {type === 'textarea'
-          ? <textarea className={classes('form-control', !valid && 'form-control-danger')} {...inputProps} />
-          : <input type={type} className={classes('form-control', !valid && 'form-control-danger')} {...inputProps} />
+          ? <textarea className={classes('form-control', !valid && 'form-control-danger')}
+              value={value} {...inputProps} />
+          : <input type={type} className={classes('form-control', !valid && 'form-control-danger')}
+              value={value} {...inputProps} />
         }
 
         {showStrength
-          ? <ZxcvbnMeter password={inputProps.value} />
+          ? <ZxcvbnMeter password={value} />
           : null
         }
       </div>
