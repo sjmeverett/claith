@@ -8,6 +8,8 @@ export interface ClickTargetProps extends CommonProps<any>, TriggerKeyProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   to?: string;
   title?: string;
+  disabled?: boolean;
+  type?: string;
 };
 
 export const clickTarget = 
@@ -15,8 +17,8 @@ export const clickTarget =
   triggerKey()(
     (props: ClickTargetProps) => {
       const className = classes(props);
-      const {href, onClick, to, title} = props;
-      let _props: ClickTargetProps = {className, title, children: props.children};
+      const {href, onClick, to, ...rest} = props;
+      let _props: ClickTargetProps = {...rest, className};
       let element;
 
       if (href) {
@@ -57,7 +59,7 @@ export const Button = (props: ButtonProps) => {
   );
 
   if (submit) {
-    buttonProps['type'] = 'submit';
+    buttonProps.type = 'submit';
   }
 
   const Target = clickTarget(submit ? 'button' : 'div');
