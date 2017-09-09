@@ -2,6 +2,10 @@ import * as React from 'react';
 import { CommonProps, prefix, classes } from './util';
 import { ZxcvbnMeter } from './password-meter';
 
+export interface ExtendedChangeEvent extends React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> {
+  optionValue?: any;
+}
+
 export interface FormGroupProps extends CommonProps<any>, React.HTMLProps<any> {
   help?: string;
   label?: string;
@@ -13,6 +17,7 @@ export interface FormGroupProps extends CommonProps<any>, React.HTMLProps<any> {
   errors?: string[];
   optionValue?: any;
   inline?: boolean;
+  onChange: React.EventHandler<ExtendedChangeEvent>;
 };
 
 export const FormGroup = (props: FormGroupProps) => {
@@ -60,17 +65,8 @@ export const FormGroup = (props: FormGroupProps) => {
           className={classes('form-check-input', !valid && 'form-control-danger')}
           checked={value === optionValue}
           {...checkProps}
-
-          onChange={
-              (e) => {
-                if (e.target.checked) {
-                  onChange({target: {value: optionValue}} as any);
-
-                } else if (type === 'checkbox') {
-                  onChange({target: {value: false}} as any);
-                }
-              }
-            } />&nbsp;
+          onChange={(e) => onChange({...e, optionValue: e.target.checked ? optionValue : false})}
+          />&nbsp;
         {label}
       </label>
     );
