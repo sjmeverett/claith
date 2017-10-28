@@ -2,3 +2,4 @@ node_modules/
 dist/
 .tscache/
 *.tmp.txt
+yarn-error.log
