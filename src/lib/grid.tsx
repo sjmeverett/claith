@@ -31,8 +31,8 @@ export interface ColProps extends CommonDivProps {
 };
 
 export const Col = (props: ColProps) => (
-  <div className={classes(props, 'col',
-      prefix(props.xs, 'col-xs'),
+  <div className={classes(props,
+      prefix(props.xs, 'col') || 'col',
       prefix(props.sm, 'col-sm'),
       prefix(props.md, 'col-md'),
       prefix(props.lg, 'col-lg'),
