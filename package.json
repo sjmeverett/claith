@@ -6,7 +6,8 @@
   "types": "dist/lib/index.d.ts",
   "scripts": {
     "test": "ava dist/test/**/*.js",
-    "prepublish": "grunt"
+    "prepublish": "grunt",
+    "postversion": "git push --follow-tags"
   },
   "author": "Stewart Mackenzie-Leigh",
   "license": "ISC",
