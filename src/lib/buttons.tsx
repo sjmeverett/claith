@@ -27,6 +27,7 @@ export const clickTarget = (
     } else if (onClick) {
       element = "button";
       _props.onClick = onClick;
+      _props.type = _props.type || "button";
     } else if (to) {
       element = Link;
       _props.to = to;
@@ -55,7 +56,9 @@ export const Button = (props: ButtonProps) => {
     fab && "fab"
   );
 
-  buttonProps.type = submit ? "submit" : "button";
+  if (submit) {
+    buttonProps.type = "submit";
+  }
 
   const Target = clickTarget(submit ? "button" : "div");
   return <Target {...buttonProps} />;
